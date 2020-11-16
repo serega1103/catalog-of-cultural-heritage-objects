@@ -1,0 +1,61 @@
+<template>
+  <div class="cho-catalog-item">
+    <img class="cho-catalog-item__image" :src=" require('../assets/images/' + object_data.image) " alt="object_data.title">
+    <div class="cho-catalog-item__description">
+      <p class="cho-catalog-item__title"><b>{{ object_data.title }}</b></p>
+      <p class="cho-catalog-item__type">{{ object_data.type }}</p>
+      <p class="cho-catalog-item__construction"><i>{{ object_data.construction }}</i></p>
+      <p class="cho-catalog-item__number_of_storeys">Этажей: {{ object_data.number_of_storeys }}</p>
+      <p class="cho-catalog-item__condition">Состояние: {{ object_data.condition }}</p>
+      <p class="cho-catalog-item__appearance">Внешний вид: {{ object_data.appearance }}</p>
+      <p class="cho-catalog-item__human_influence">Влияние человека: {{ object_data.human_influence }}</p>
+
+      <p class="cho-catalog-item__construction_period"><b>{{ object_data.construction_period }}</b></p>
+      <p class="cho-catalog-item__adress">{{ object_data.address }}</p>
+      <button
+      class="cho-catalog-item__add_to_cart_btn btn"
+      @click="sendDataToParent">
+      Add to cart</button>
+    </div>
+  </div>
+</template>
+
+<script>
+
+  export default {
+    name: 'cho-catalog-item',
+    components: {},
+    props: {
+      object_data: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
+    },
+    data() {
+      return {}
+    },
+    computed: {},
+    methods: {
+      sendDataToParent() {
+        this.$emit( {event: 'sendTitle'}, this.object_data.title)
+      }
+    },
+    watch: {}
+  }
+</script>
+
+<style lang="scss">
+  .cho-catalog-item {
+    flex-basis: 15%;
+    box-shadow: 0 0 8px 0 #e0e0e0;
+    margin-bottom: $margin*2;
+    &__image {
+      width: 350px;
+    }
+    &__description {
+      padding: $padding*2;
+    }
+  }
+</style>
