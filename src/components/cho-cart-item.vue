@@ -1,18 +1,14 @@
 <template>
-  <div class="cho-cart">
-    <h1>Корзина</h1>
-    <cho-cart-item />
+  <div class="cho-cart-item">
+
   </div>
 </template>
 
 <script type="text/javascript">
-  import choCartItem from './cho-cart-item'
 
   export default {
-    name: 'cho-cart',
-    components: {
-      choCartItem
-    },
+    name: 'cho-cart-item',
+    components: {},
     props: {},
     data() {
       return {}
