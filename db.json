@@ -1,5 +1,5 @@
 {
-  "objects": [
+  "chobjects": [
     {
       "image": "1.jpg",
       "title": "Дом Ушакова",
@@ -10,7 +10,7 @@
       "appearance": "Руина",
       "human_influence": "Граффити",
       "construction_period": "1723-1800",
-      "address": "Гоголя 85"
+      "address": "Гладкова 24"
     },
     {
       "image": "2.jpg",

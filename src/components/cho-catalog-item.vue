@@ -1,17 +1,17 @@
 <template>
   <div class="cho-catalog-item">
-    <img class="cho-catalog-item__image" :src=" require('../assets/images/' + object_data.image) " alt="object_data.title">
+    <img class="cho-catalog-item__image" :src=" require('../assets/images/' + chobject_data.image) " alt="object_data.title">
     <div class="cho-catalog-item__description">
-      <p class="cho-catalog-item__title"><b>{{ object_data.title }}</b></p>
-      <p class="cho-catalog-item__type">{{ object_data.type }}</p>
-      <p class="cho-catalog-item__construction"><i>{{ object_data.construction }}</i></p>
-      <p class="cho-catalog-item__number_of_storeys">Этажей: {{ object_data.number_of_storeys }}</p>
-      <p class="cho-catalog-item__condition">Состояние: {{ object_data.condition }}</p>
-      <p class="cho-catalog-item__appearance">Внешний вид: {{ object_data.appearance }}</p>
-      <p class="cho-catalog-item__human_influence">Влияние человека: {{ object_data.human_influence }}</p>
+      <p class="cho-catalog-item__title"><b>{{ chobject_data.title }}</b></p>
+      <p class="cho-catalog-item__type">{{ chobject_data.type }}</p>
+      <p class="cho-catalog-item__construction"><i>{{ chobject_data.construction }}</i></p>
+      <p class="cho-catalog-item__number_of_storeys">Этажей: {{ chobject_data.number_of_storeys }}</p>
+      <p class="cho-catalog-item__condition">Состояние: {{ chobject_data.condition }}</p>
+      <p class="cho-catalog-item__appearance">Внешний вид: {{ chobject_data.appearance }}</p>
+      <p class="cho-catalog-item__human_influence">Влияние человека: {{ chobject_data.human_influence }}</p>
 
-      <p class="cho-catalog-item__construction_period"><b>{{ object_data.construction_period }}</b></p>
-      <p class="cho-catalog-item__adress">{{ object_data.address }}</p>
+      <p class="cho-catalog-item__construction_period"><b>{{ chobject_data.construction_period }}</b></p>
+      <p class="cho-catalog-item__adress">{{ chobject_data.address }}</p>
       <button
       class="cho-catalog-item__add_to_cart_btn btn"
       @click="sendDataToParent">
@@ -26,7 +26,7 @@
     name: 'cho-catalog-item',
     components: {},
     props: {
-      object_data: {
+      chobject_data: {
         type: Object,
         default() {
           return {}
@@ -39,7 +39,7 @@
     computed: {},
     methods: {
       sendDataToParent() {
-        this.$emit( {event: 'sendTitle'}, this.object_data.title)
+        this.$emit( {event: 'sendTitle'}, this.chobject_data.title)
       }
     },
     watch: {}

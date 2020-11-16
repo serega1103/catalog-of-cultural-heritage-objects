@@ -3,9 +3,9 @@
     <h1>Im a catalog</h1>
     <div class="cho-catalog__list">
       <cho-catalog-item
-        v-for="object in objects"
-        :key="object.title"
-        :object_data="object"
+        v-for="chobject in chobjects"
+        :key="chobject.title"
+        :chobject_data="chobject"
         @sendTitle="showChildTitleInConsole"
       />
     </div>
@@ -23,7 +23,7 @@ import choCatalogItem from './cho-catalog-item'
     props: {},
     data() {
       return {
-        objects: [
+        chobjects: [
           {
             image: "1.jpg",
             title: "Дом Ушакова",
@@ -34,7 +34,7 @@ import choCatalogItem from './cho-catalog-item'
             appearance: "Руина",
             human_influence: "Граффити",
             construction_period: "1723-1800",
-            address: "Гоголя 85"
+            address: "Гладкова 24"
           },
           {
             image: "2.jpg",
