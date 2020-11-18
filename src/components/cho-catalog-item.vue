@@ -12,10 +12,6 @@
 
       <p class="cho-catalog-item__construction_period"><b>{{ heritageObject_data.construction_period }}</b></p>
       <p class="cho-catalog-item__adress">{{ heritageObject_data.address }}</p>
-      <button
-      class="cho-catalog-item__add_to_cart_btn btn"
-      @click="sendDataToParent">
-      Add to cart</button>
     </div>
   </div>
 </template>
@@ -37,11 +33,7 @@
       return {}
     },
     computed: {},
-    methods: {
-      sendDataToParent() {
-        this.$emit( {event: 'sendTitle'}, this.heritageObject_data.title)
-      }
-    },
+    methods: {},
     watch: {}
   }
 </script>

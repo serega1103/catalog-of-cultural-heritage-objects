@@ -25,9 +25,7 @@ import choCart from './cho-cart'
     computed: {},
     methods: {},
     watch: {},
-    mounted() {
-      console.log('Hello world!')
-    }
+    mounted() {}
   }
 </script>
 
