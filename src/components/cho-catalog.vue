@@ -6,7 +6,7 @@
         v-for="heritageObject in HERITAGEOBJECTS"
         :key="heritageObject.title"
         :heritageObject_data="heritageObject"
-        @sendTitle="showChildTitleInConsole"
+        @addToCart="addToCart"
       />
     </div>
   </div>
@@ -34,10 +34,11 @@ import {mapActions, mapGetters} from 'vuex'
     },
     methods: {
       ...mapActions([
-        'GET_HERITAGEOBJECTS_FROM_API'
+        'GET_HERITAGEOBJECTS_FROM_API',
+        'ADD_TO_CART'
       ]),
-      showChildTitleInConsole(data) {
-        console.log(data)
+      addToCart(data) {
+        this.ADD_TO_CART(data)
       }
     },
     watch: {},

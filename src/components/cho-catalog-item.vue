@@ -14,7 +14,7 @@
       <p class="cho-catalog-item__adress">{{ heritageObject_data.address }}</p>
       <button
       class="cho-catalog-item__add_to_cart_btn btn"
-      @click="sendDataToParent">
+      @click="addToCart">
       Add to cart</button>
     </div>
   </div>
@@ -38,8 +38,8 @@
     },
     computed: {},
     methods: {
-      sendDataToParent() {
-        this.$emit( {event: 'sendTitle'}, this.heritageObject_data.title)
+      addToCart() {
+        this.$emit('addToCart' , this.heritageObject_data)
       }
     },
     watch: {}

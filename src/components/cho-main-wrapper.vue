@@ -2,13 +2,17 @@
   <div class="cho-main-wrapper">
     <h1>{{ title }}</h1>
     <cho-catalog />
-    <cho-cart />
+    <cho-cart
+      v-if="CART.length"
+      :cart_data="CART"
+    />
   </div>
 </template>
 
 <script type="text/javascript">
 import choCatalog from './cho-catalog'
 import choCart from './cho-cart'
+import {mapGetters} from 'vuex'
 
   export default {
     name: 'cho-main-wrapper',
@@ -22,7 +26,11 @@ import choCart from './cho-cart'
         title: 'Main wrapper'
       }
     },
-    computed: {},
+    computed: {
+      ...mapGetters([
+        'CART'
+      ])
+    },
     methods: {},
     watch: {},
     mounted() {
