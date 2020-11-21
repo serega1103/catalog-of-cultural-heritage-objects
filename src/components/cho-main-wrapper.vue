@@ -1,26 +1,23 @@
 <template>
   <div class="cho-main-wrapper">
-    <h1>{{ title }}</h1>
-    <cho-catalog />
-    <cho-cart />
+    <!--<cho-catalog />-->
+    <cho-map />
   </div>
 </template>
 
 <script type="text/javascript">
-import choCatalog from './cho-catalog'
-import choCart from './cho-cart'
+//import choCatalog from './cho-catalog'
+import choMap from './cho-map'
 
   export default {
     name: 'cho-main-wrapper',
     components: {
-      choCatalog,
-      choCart
+      //choCatalog,
+      choMap
     },
     props: {},
     data() {
-      return {
-        title: 'Main wrapper'
-      }
+      return {}
     },
     computed: {},
     methods: {},
