@@ -1,20 +1,15 @@
 <template>
   <div class="cho-main-wrapper">
-    <!--<cho-catalog />-->
-    <cho-map />
+    <router-view></router-view>
   </div>
 </template>
 
 <script type="text/javascript">
-//import choCatalog from './cho-catalog'
-import choMap from './cho-map'
+// import choCatalog from './cho-catalog'
 
   export default {
     name: 'cho-main-wrapper',
-    components: {
-      //choCatalog,
-      choMap
-    },
+    components: {},
     props: {},
     data() {
       return {}

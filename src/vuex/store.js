@@ -8,7 +8,8 @@ let store = new Vuex.Store({
   state: {
     heritageObjects: [],
     mapInstance: null,
-    mapMarkers: []//,
+    mapMarkers: [],
+    form: {}//,
     //fetchingMapMarkers: null
   },
   mutations: {
@@ -20,14 +21,18 @@ let store = new Vuex.Store({
     },
     SET_MAPMARKERS_TO_STATE: (state, mapMarkers) => {
       state.mapMarkers = mapMarkers;
-    }//,
+    },
+    SET_FORM_TO_STATE: (state, { key, value }) => {
+      state.form[key] = value;
+    },
+    //,
     //SET_FETCHING_MAPMARKERS: (state, fetchingMapMarkers) => {
     //  state.fetchingMapMarkers = fetchingMapMarkers;
     //}
   },
   actions: {
     GET_HERITAGEOBJECTS_FROM_API({commit}) {
-      return axios('http://localhost:3000/heritageObjects', {
+      return axios('http://127.0.0.1:3000/heritageObjects/', {
         method: "GET"
       })
       .then((heritageObjects ) => {
@@ -51,6 +56,17 @@ let store = new Vuex.Store({
         console.log(error);
         return error;
       })
+    },
+    async CREATE_ITEM(context) {
+      const response = await fetch('http://localhost:5000/api/heritageobjects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(context.state.form)
+      });
+      const responseJson = await response.json();
+      console.log('response', responseJson);
     }
   },
   getters: {

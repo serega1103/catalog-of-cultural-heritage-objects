@@ -1,5 +1,8 @@
 <template>
   <div class="cho-map">
+    <router-link :to="{ name: 'catalog', params: {} }">
+      <p>Go to Catalog</p>
+    </router-link>
     <div ref="choMapContainer" id="cho-map-container"></div>
   </div>
 </template>

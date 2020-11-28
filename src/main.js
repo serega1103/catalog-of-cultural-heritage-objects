@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './vuex/store'
+import router from "./router/router";
 
 // Раньше для сборки нужно было импортировать styles.scss,
 // сейчас styles.scss импортируется автоматически.
@@ -10,5 +11,6 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
-  store
+  store,
+  router
 }).$mount('#app')
