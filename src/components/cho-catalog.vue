@@ -4,60 +4,42 @@
       <p>Go to Map</p>
     </router-link>
     <h1>Im a catalog</h1>
-    <!-- <div class="cho-catalog__add-new-item">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(obj, key) in table" :key="key">
-            <td> <b @click="deleteRow(obj._id)">X</b> {{ (key + 1) }} </td>
-            <td><input v-model="obj.name" @change="editValue(obj)"></td>
-            <td><input v-model="obj.description" @change="editValue(obj)"></td>
-          </tr>
-        </tbody>
-      </table>
-      <button type="button" @click="appendRow()">Add Item</button>
-    </div> -->
-    <button type="button" @click="appendRow()">Add Item</button>
+    <button type="button" @click="APPEND_HERITAGEOBJECT_TO_DB()">Add Item</button>
     <div class="cho-catalog__list">
-      <div v-for="(obj, key) in table" :key="key" class="cho-catalog-item">
-        <p><b @click="deleteRow(obj._id)">X</b></p>
-        <p>Название: <input v-model="obj.name" @change="editValue(obj)"></p>
-        <p>Описание: <input v-model="obj.description" @change="editValue(obj)"></p>
-      </div>
-
-      <!-- TO DO: Catalog Item Component with VueX -->
-      <!-- <cho-catalog-item
-        v-for="heritageObject in HERITAGEOBJECTS"
-        :key="heritageObject.title"
-        :heritageObject_data="heritageObject"
-        @sendTitle="showChildTitleInConsole"
-      /> -->
+      <!-- <router-link v-for="(heritageObject, index) in HERITAGEOBJECTS" :key="index" :to="{'/catalog/object/' + index, params: {heritageObject_data: heritageObject} }"> -->
+      <router-link
+        v-for="(heritageObject, index) in HERITAGEOBJECTS"
+        :key="index"
+        :to="{ name: 'object', params: { heritageObjectId: heritageObject._id } }">
+        <cho-catalog-item :heritageObject_data="heritageObject"/>
+      </router-link>
+      <!-- <router-link v-for="(heritageObject, key) in HERITAGEOBJECTS" :key="key" :to="'/catalog/object/' + key">
+        <div class="cho-catalog-item">
+          <p>Название: <input v-model="heritageObject.name"></p>
+          <p>Описание: <input v-model="heritageObject.description"></p>
+          <p><b @click="deleteRow(obj._id)">X</b></p>
+          <p>Название: <input v-model="obj.name" @change="editValue(obj)"></p>
+          <p>Описание: <input v-model="obj.description" @change="editValue(obj)"></p>
+        </div>
+      </router-link> -->
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-// import choCatalogItem from './cho-catalog-item'
-import { mapActions, mapGetters, mapMutations } from 'vuex'
-import axios from 'axios'
+import choCatalogItem from './cho-catalog-item'
+import { mapActions, mapGetters } from 'vuex'
+// import axios from 'axios'
 
   export default {
     name: 'cho-catalog',
     components: {
-      // choCatalogItem
+      choCatalogItem
     },
     props: {},
     data() {
       return {
-        host: "http://127.0.0.1:3000",
-        page: 1,
-        table: []
+        heritageObject_data: null
       }
     },
     computed: {
@@ -67,59 +49,48 @@ import axios from 'axios'
     },
     methods: {
       ...mapActions([
-        'GET_HERITAGEOBJECTS_FROM_API',
-        'CREATE_ITEM'
-      ]),
-      ...mapMutations([
-        'SET_FORM_TO_STATE'
-      ]),
-      // _SET_FORM_TO_STATE(event) {
-      //   this.SET_FORM_TO_STATE({
-      //     key: 'item',
-      //     value: event.target.value
+        'GET_HERITAGEOBJECTS_FROM_DB',
+        'APPEND_HERITAGEOBJECT_TO_DB',
+        'REMOVE_HERITAGEOBJECT_FROM_DB',
+        'EDIT_HERITAGEOBJECT_IN_DB'
+      ])
+      // load() {
+      //   axios.get(this.host + "/test/" + this.page)
+      //   .then(result => {
+      //     HERITAGEOBJECTS = result.data;
       //   });
       // },
-      // _submitItem(event) {
-      //   event.preventDefault();
-      //   this.CREATE_ITEM();
+      // appendRow() {
+      //   axios.post(this.host + "/test/", { name: "", description: "" })
+      //   .then(result => {
+      //     this.load();
+      //     return result;
+      //   });
       // },
-      load() {
-        axios.get(this.host + "/test/" + this.page)
-        .then(result => {
-          this.table = result.data;
-        });
-      },
-      appendRow() {
-        axios.post(this.host + "/test/", { name: "", description: "" })
-        .then(result => {
-          this.load();
-          return result;
-        });
-      },
-      deleteRow(id) {
-        axios.delete(this.host + "/test/" + id)
-        .then(result => {
-          this.load();
-          return result;
-        });
-      },
-      editValue(obj) {
-        axios.patch(this.host + "/test/" + obj._id, { name: obj.name, description: obj.description })
-        .then(result => {
-          this.load();
-          return result;
-        });
-      }
+      // deleteRow(id) {
+      //   axios.delete(this.host + "/test/" + id)
+      //   .then(result => {
+      //     this.load();
+      //     return result;
+      //   });
+      // },
+      // editValue(obj) {
+      //   axios.patch(this.host + "/test/" + obj._id, { name: obj.name, description: obj.description })
+      //   .then(result => {
+      //     this.load();
+      //     return result;
+      //   });
+      // }
     },
     watch: {},
     mounted() {
-      this.load();
-      // this.GET_HERITAGEOBJECTS_FROM_API()
-      // .then((response) => {
-      //   if (response.data) {
-      //     console.log('Data arrived!')
-      //   }
-      // })
+      this.GET_HERITAGEOBJECTS_FROM_DB()
+      .then((response) => {
+        if (response.data) {
+          console.log('Data arrived!')
+        }
+      })
+      // this.load();
     }
   }
 </script>
